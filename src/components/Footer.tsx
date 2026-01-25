@@ -37,7 +37,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="font-body text-xs tracking-widest text-muted-foreground">
-            © 2026 FARHAD. Tous droits réservés.
+            © 2026 FARHAD. All rights reserved.
           </p>
         </div>
       </div>

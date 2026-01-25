@@ -110,17 +110,17 @@ const ContactSection = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
-              Collaborons
+              Let's Work Together
             </p>
             <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground mb-8">
-              Prenons
+              Get in
               <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="block italic text-primary"
               >
-                Contact
+                Touch
               </motion.span>
             </h2>
 
@@ -130,8 +130,8 @@ const ContactSection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="font-body text-muted-foreground leading-relaxed max-w-md mb-12"
             >
-              Pour les demandes de collaboration, les réservations ou toute autre 
-              information, n'hésitez pas à me contacter directement ou via mon agence.
+              For collaboration inquiries, bookings, or any other information, 
+              feel free to contact me directly or through my agency.
             </motion.p>
 
             {/* Contact Info */}
@@ -173,7 +173,7 @@ const ContactSection = () => {
             className="bg-card p-8 lg:p-12 border border-border"
           >
             <h3 className="font-display text-2xl lg:text-3xl text-foreground mb-8">
-              Demande de Réservation
+              Booking Request
             </h3>
 
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -184,7 +184,7 @@ const ContactSection = () => {
                   transition={{ delay: 0.3 }}
                 >
                   <label className="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-3">
-                    Nom
+                    Name
                   </label>
                   <motion.input
                     type="text"
@@ -193,7 +193,7 @@ const ContactSection = () => {
                     className={`w-full bg-transparent border-b py-3 font-body text-foreground focus:outline-none transition-colors ${
                       errors.name ? "border-destructive" : "border-border focus:border-primary"
                     }`}
-                    placeholder="Votre nom"
+                    placeholder="Your name"
                     variants={inputVariants}
                     whileFocus="focus"
                   />
@@ -232,7 +232,7 @@ const ContactSection = () => {
                 transition={{ delay: 0.5 }}
               >
                 <label className="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-3">
-                  Type de Projet
+                  Project Type
                 </label>
                 <select
                   value={formData.projectType}
@@ -241,11 +241,11 @@ const ContactSection = () => {
                     errors.projectType ? "border-destructive" : "border-border focus:border-primary"
                   }`}
                 >
-                  <option value="" className="bg-card">Sélectionnez une option</option>
+                  <option value="" className="bg-card">Select an option</option>
                   <option value="editorial" className="bg-card">Editorial</option>
-                  <option value="campaign" className="bg-card">Campagne Publicitaire</option>
-                  <option value="runway" className="bg-card">Défilé</option>
-                  <option value="other" className="bg-card">Autre</option>
+                  <option value="campaign" className="bg-card">Advertising Campaign</option>
+                  <option value="runway" className="bg-card">Runway</option>
+                  <option value="other" className="bg-card">Other</option>
                 </select>
                 {errors.projectType && (
                   <p className="text-destructive text-xs mt-2">{errors.projectType}</p>
@@ -267,8 +267,8 @@ const ContactSection = () => {
                   className={`w-full bg-transparent border-b py-3 font-body text-foreground focus:outline-none transition-colors resize-none ${
                     errors.message ? "border-destructive" : "border-border focus:border-primary"
                   }`}
-                  placeholder="Décrivez votre projet..."
-                  variants={inputVariants}
+                    placeholder="Describe your project..."
+                    variants={inputVariants}
                   whileFocus="focus"
                 />
                 {errors.message && (
@@ -293,15 +293,15 @@ const ContactSection = () => {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Envoi en cours...
+                    Sending...
                   </>
                 ) : isSuccess ? (
                   <>
                     <CheckCircle className="w-4 h-4" />
-                    Message Envoyé
+                    Message Sent
                   </>
                 ) : (
-                  "Envoyer la Demande"
+                  "Send Request"
                 )}
               </motion.button>
             </form>

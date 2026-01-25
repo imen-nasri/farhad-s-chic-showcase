@@ -97,7 +97,7 @@ const PortfolioSection = () => {
             className="text-center mb-16 lg:mb-24"
           >
             <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
-              Travaux
+              Works
             </p>
             <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground">
               Portfolio
@@ -202,7 +202,7 @@ const PortfolioSection = () => {
               to="/gallery"
               className="inline-flex items-center gap-4 font-body text-sm tracking-widest uppercase text-foreground hover:text-primary transition-colors group"
             >
-              <span>Voir Galerie Complète</span>
+              <span>View Full Gallery</span>
               <motion.span
                 className="w-12 h-px bg-foreground group-hover:bg-primary"
                 whileHover={{ width: 80 }}

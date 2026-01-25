@@ -31,8 +31,8 @@ const AboutSection = () => {
 
   const stats = [
     { value: "185", label: "cm" },
-    { value: "10+", label: "Années" },
-    { value: "50+", label: "Campagnes" },
+    { value: "10+", label: "Years" },
+    { value: "50+", label: "Campaigns" },
     { value: "3", label: "Continents" },
   ];
 
@@ -72,46 +72,50 @@ const AboutSection = () => {
           <div className="lg:pl-8">
             <motion.p
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4"
             >
-              À Propos
+              About
             </motion.p>
             
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="font-display text-5xl lg:text-6xl font-light text-foreground mb-8"
             >
-              L'Art de la
+              The Art of
               <motion.span
                 initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.4 }}
                 className="block italic text-primary"
               >
-                Présence
+                Presence
               </motion.span>
             </motion.h2>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="space-y-6 text-muted-foreground font-body leading-relaxed"
             >
               <p>
-                Farhad incarne l'élégance contemporaine avec une présence magnétique 
-                qui transcende les frontières de la mode traditionnelle. Originaire 
-                de Paris, il a su imposer son style unique sur les podiums les plus 
-                prestigieux du monde.
+                Farhad embodies contemporary elegance with a magnetic presence 
+                that transcends the boundaries of traditional fashion. Based in 
+                Dubai, he has established his unique style on the world's most 
+                prestigious runways.
               </p>
               <p>
-                Avec plus d'une décennie d'expérience, il a collaboré avec les 
-                maisons de couture les plus iconiques, des éditoriaux de Vogue aux 
-                campagnes internationales pour Dior, Gucci et Armani.
+                With over a decade of experience, he has collaborated with the 
+                most iconic fashion houses, from Vogue editorials to international 
+                campaigns for Dior, Gucci, and Armani.
               </p>
             </motion.div>
 
