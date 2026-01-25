@@ -12,7 +12,6 @@ import formal3 from "@/assets/gallery/formal-3.jpg";
 // Gallery imports - Portfolio (existing)
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
 import portfolio5 from "@/assets/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-6.jpg";
@@ -60,7 +59,6 @@ const Gallery = () => {
     // Formal
     { image: portfolio1, title: "Soirée Élégante", category: "formal" },
     { image: portfolio2, title: "Bordeaux Classic", category: "formal" },
-    { image: portfolio3, title: "Three Piece", category: "formal" },
     { image: portfolio4, title: "Editorial", category: "formal" },
     { image: portfolio5, title: "Casual Chic", category: "formal" },
     { image: portfolio6, title: "Urban Formal", category: "formal" },
