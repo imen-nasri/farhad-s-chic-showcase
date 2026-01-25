@@ -4,6 +4,9 @@ import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
+import portfolio5 from "@/assets/portfolio-5.jpg";
+import portfolio6 from "@/assets/portfolio-6.jpg";
+import portfolio7 from "@/assets/portfolio-7.jpg";
 import Lightbox from "./Lightbox";
 
 const PortfolioSection = () => {
@@ -17,23 +20,38 @@ const PortfolioSection = () => {
   const portfolioItems = [
     {
       image: portfolio1,
-      title: "Haute Couture",
-      category: "Editorial",
+      title: "Soirée Élégante",
+      category: "Black Tie",
     },
     {
       image: portfolio2,
-      title: "Urban Style",
-      category: "Street Fashion",
+      title: "Bordeaux Classic",
+      category: "Business Style",
     },
     {
       image: portfolio3,
-      title: "Beauty",
-      category: "Campaign",
+      title: "Three Piece",
+      category: "Corporate",
     },
     {
       image: portfolio4,
-      title: "Evening Wear",
-      category: "Luxury",
+      title: "Editorial",
+      category: "Fashion Week",
+    },
+    {
+      image: portfolio5,
+      title: "Casual Chic",
+      category: "Lifestyle",
+    },
+    {
+      image: portfolio6,
+      title: "Urban Formal",
+      category: "City Style",
+    },
+    {
+      image: portfolio7,
+      title: "Détails",
+      category: "Artisanat",
     },
   ];
 
