@@ -15,7 +15,7 @@ const PortfolioSection = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { amount: 0.2, once: true });
+  const isInView = useInView(sectionRef, { amount: 0.05, once: true });
 
   const portfolioItems = [
     {
@@ -91,7 +91,8 @@ const PortfolioSection = () => {
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-center mb-16 lg:mb-24"
           >
@@ -103,7 +104,8 @@ const PortfolioSection = () => {
             </h2>
             <motion.div
               initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.3 }}
               className="line-elegant w-24 mx-auto mt-8 origin-center"
             />
@@ -113,7 +115,8 @@ const PortfolioSection = () => {
           <motion.div
             variants={containerVariants}
             initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
             className="grid md:grid-cols-2 gap-6 lg:gap-8"
           >
             {portfolioItems.map((item, index) => (
@@ -190,8 +193,9 @@ const PortfolioSection = () => {
           {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.8 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="text-center mt-16"
           >
             <Link

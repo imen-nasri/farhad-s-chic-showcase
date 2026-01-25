@@ -27,7 +27,7 @@ const StatCounter = ({ value, label, delay, isInView }: { value: string; label: 
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { amount: 0.3, once: true });
+  const isInView = useInView(sectionRef, { amount: 0.05, once: true });
 
   const stats = [
     { value: "185", label: "cm" },
@@ -43,20 +43,23 @@ const AboutSection = () => {
           {/* Image with reveal animation */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative group"
           >
             <motion.div
               initial={{ x: 16, y: 16 }}
-              animate={isInView ? { x: 8, y: 8 } : { x: 16, y: 16 }}
+              whileInView={{ x: 8, y: 8 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="absolute -inset-4 border border-primary/20 -z-10"
             />
             <div className="overflow-hidden">
               <motion.img
                 initial={{ scale: 1.2 }}
-                animate={isInView ? { scale: 1 } : { scale: 1.2 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 src={aboutImage}
                 alt="Farhad - Portrait"
