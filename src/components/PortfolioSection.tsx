@@ -3,7 +3,6 @@ import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
-import portfolio3 from "@/assets/portfolio-3.jpg";
 import portfolio4 from "@/assets/portfolio-4.jpg";
 import portfolio5 from "@/assets/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-6.jpg";
@@ -28,11 +27,6 @@ const PortfolioSection = () => {
       image: portfolio2,
       title: "Bordeaux Classic",
       category: "Business Style",
-    },
-    {
-      image: portfolio3,
-      title: "Three Piece",
-      category: "Corporate",
     },
     {
       image: portfolio4,
