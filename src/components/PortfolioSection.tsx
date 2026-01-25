@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { Link } from "react-router-dom";
 import portfolio1 from "@/assets/portfolio-1.jpg";
 import portfolio2 from "@/assets/portfolio-2.jpg";
 import portfolio3 from "@/assets/portfolio-3.jpg";
@@ -199,17 +200,17 @@ const PortfolioSection = () => {
             transition={{ duration: 0.6, delay: 0.8 }}
             className="text-center mt-16"
           >
-            <a
-              href="#contact"
+            <Link
+              to="/gallery"
               className="inline-flex items-center gap-4 font-body text-sm tracking-widest uppercase text-foreground hover:text-primary transition-colors group"
             >
-              <span>Voir Plus</span>
+              <span>Voir Galerie Complète</span>
               <motion.span
                 className="w-12 h-px bg-foreground group-hover:bg-primary"
                 whileHover={{ width: 80 }}
                 transition={{ duration: 0.3 }}
               />
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>
