@@ -43,7 +43,7 @@ const ContactSection = () => {
     {
       icon: MapPin,
       label: "Location",
-      value: "Paris, France",
+      value: "Dubai, UAE",
       href: "#",
     },
   ];
