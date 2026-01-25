@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Instagram, Mail, MapPin, Loader2, CheckCircle } from "lucide-react";
+import { Phone, Mail, MapPin, Loader2, CheckCircle } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
 
@@ -31,14 +31,14 @@ const ContactSection = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "contact@farhad.com",
-      href: "mailto:contact@farhad.com",
+      value: "info@farhad-model.com",
+      href: "mailto:info@farhad-model.com",
     },
     {
-      icon: Instagram,
-      label: "Instagram",
-      value: "@farhad.model",
-      href: "https://instagram.com",
+      icon: Phone,
+      label: "WhatsApp",
+      value: "+45 71 45 56 77",
+      href: "https://wa.me/4571455677",
     },
     {
       icon: MapPin,
