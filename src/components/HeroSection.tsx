@@ -77,7 +77,7 @@ const HeroSection = () => {
           className="overflow-hidden mt-8"
         >
           <p className="font-body text-sm md:text-base text-muted-foreground tracking-widest uppercase">
-            Paris · Milan · New York
+            Dubai · Milan · New York
           </p>
         </motion.div>
       </motion.div>
@@ -95,7 +95,7 @@ const HeroSection = () => {
           className="flex flex-col items-center gap-2"
         >
           <span className="font-body text-xs tracking-widest text-muted-foreground uppercase">
-            Découvrir
+            Discover
           </span>
           <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent" />
         </motion.div>
