@@ -107,15 +107,15 @@ const AboutSection = () => {
               className="space-y-6 text-muted-foreground font-body leading-relaxed"
             >
               <p>
-                Farhad embodies contemporary elegance with a magnetic presence 
-                that transcends the boundaries of traditional fashion. Based in 
-                Dubai, he has established his unique style on the world's most 
-                prestigious runways.
+                I embody contemporary elegance with a magnetic presence 
+                that goes beyond the boundaries of traditional fashion. Based in 
+                Dubai, I have built a distinctive style showcased on some of the 
+                world's most prestigious runways.
               </p>
               <p>
-                With over a decade of experience, he has collaborated with the 
-                most iconic fashion houses, from Vogue editorials to international 
-                campaigns for Dior, Gucci, and Armani.
+                With over a decade of experience in the fashion industry, I have 
+                collaborated with iconic fashion houses and global platforms—from 
+                Vogue editorials to international campaigns.
               </p>
             </motion.div>
 
