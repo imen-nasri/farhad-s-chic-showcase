@@ -1,105 +1,88 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import heroImage from "@/assets/hero-farhad.jpg";
+import { motion } from "framer-motion";
 
 const HeroSection = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end start"],
-  });
-
-  const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.2]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
   return (
-    <section
-      ref={sectionRef}
-      id="home"
-      className="relative h-screen flex items-center justify-center overflow-hidden"
-    >
-      {/* Background Image with Parallax */}
-      <motion.div 
-        className="absolute inset-0"
-        style={{ y: imageY, scale: imageScale }}
-      >
-        <img
-          src={heroImage}
-          alt="Farhad - Fashion Model"
-          className="w-full h-full object-cover object-top opacity-80"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
-      </motion.div>
+    <section id="home" className="relative min-h-screen flex items-center bg-background overflow-hidden">
+      <div className="container mx-auto px-6 lg:px-12 py-32">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left - Big Name */}
+          <motion.div
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+          >
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-6"
+            >
+              Model & Actor
+            </motion.p>
+            <h1 className="font-display text-[6rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-light leading-[0.85] tracking-wide text-foreground">
+              <motion.span
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="block"
+              >
+                FAR
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+                className="block"
+              >
+                HAD
+              </motion.span>
+              <motion.span
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.7 }}
+                className="block italic text-primary text-[4rem] md:text-[5rem] lg:text-[6rem] xl:text-[7rem] mt-2"
+              >
+                Saeed
+              </motion.span>
+            </h1>
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="line-elegant w-40 mt-8 origin-left"
+            />
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.2 }}
+              className="font-body text-sm text-muted-foreground tracking-widest uppercase mt-6"
+            >
+              Dubai · Copenhagen · International
+            </motion.p>
+          </motion.div>
 
-      {/* Content with Parallax */}
-      <motion.div 
-        className="relative z-10 text-center px-6"
-        style={{ y: textY, opacity }}
-      >
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-          className="overflow-hidden"
-        >
-          <p className="font-body text-sm md:text-base tracking-[0.3em] uppercase text-primary mb-4">
-            International Fashion Model
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.95 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
-          className="overflow-hidden"
-        >
-          <h1 className="font-display text-7xl md:text-9xl lg:text-[12rem] font-light tracking-wider text-foreground">
-            FARHAD
-          </h1>
-        </motion.div>
-
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1, delay: 0.9, ease: "easeOut" }}
-          className="overflow-hidden mt-8"
-        >
-          <div className="line-elegant w-32 mx-auto" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.1, ease: "easeOut" }}
-          className="overflow-hidden mt-8"
-        >
-          <p className="font-body text-sm md:text-base text-muted-foreground tracking-widest uppercase">
-            Dubai · Milan · New York
-          </p>
-        </motion.div>
-      </motion.div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1.3, ease: "easeOut" }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="font-body text-xs tracking-widest text-muted-foreground uppercase">
-            Discover
-          </span>
-          <div className="w-px h-12 bg-gradient-to-b from-primary to-transparent" />
-        </motion.div>
-      </motion.div>
+          {/* Right - Presentation Video */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.6 }}
+            className="w-full"
+          >
+            <div className="aspect-video w-full overflow-hidden border border-border">
+              <iframe
+                src="https://www.youtube.com/embed/BXRvOZPtPbk"
+                title="Presentation Video"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <p className="font-body text-xs text-muted-foreground tracking-widest uppercase mt-4 text-center">
+              Presentation Video · December 2025
+            </p>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 };

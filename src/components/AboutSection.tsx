@@ -1,111 +1,112 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useCounter } from "@/hooks/useScrollAnimation";
-
-const StatCounter = ({ value, label, delay, isInView }: { value: string; label: string; delay: number; isInView: boolean }) => {
-  const numericValue = parseInt(value.replace(/\D/g, "")) || 0;
-  const suffix = value.replace(/[0-9]/g, "");
-  const count = useCounter(numericValue, 2000, isInView);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: delay, ease: "easeOut" }}
-      className="text-center"
-    >
-      <div className="font-display text-3xl lg:text-4xl text-foreground">
-        {count}{suffix}
-      </div>
-      <div className="font-body text-xs tracking-widest uppercase text-muted-foreground mt-1">
-        {label}
-      </div>
-    </motion.div>
-  );
-};
 
 const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { amount: 0.05, once: true });
 
-  const stats = [
-    { value: "185", label: "cm" },
-    { value: "10+", label: "Years" },
-    { value: "50+", label: "Campaigns" },
-    { value: "3", label: "Continents" },
-  ];
-
   return (
     <section ref={sectionRef} id="about" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
-        <div className="max-w-2xl mx-auto text-center">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
+            About
+          </p>
+          <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground">
+            About Me
+          </h2>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="line-elegant w-24 mx-auto mt-8 origin-center"
+          />
+        </motion.div>
 
-            <motion.p
+        <div className="max-w-3xl mx-auto space-y-16">
+          {/* Main About */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="space-y-6 font-body text-muted-foreground leading-relaxed text-center"
+          >
+            <p>
+              I've been working as a model and actor since 2021 in Denmark and have completed over 40 projects. I feel confident and natural in front of the camera.
+            </p>
+            <p>
+              My experience includes commercial ads, short movies, lifestyle campaigns, fashion shoots, and magazine features, as well as promotional work for brands across various industries — including skincare and face products, sunglasses, eyewear, clothing, vehicles, apps, tourist attractions, hotels, and much more.
+            </p>
+          </motion.div>
+
+          {/* Background */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h3 className="font-display text-3xl text-foreground mb-6">
+              My Background
+            </h3>
+            <p className="font-body text-muted-foreground leading-relaxed">
+              I'm originally Kurdish from Syria, but from 2010 to 2024 I lived in Denmark, where I obtained Danish citizenship. I'm currently based in the United Arab Emirates, Dubai Marina.
+            </p>
+          </motion.div>
+
+          {/* Languages, Sports, Music Grid */}
+          <div className="grid md:grid-cols-3 gap-12">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4"
+              className="text-center"
             >
-              About
-            </motion.p>
-            
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
+              <h3 className="font-display text-2xl text-foreground mb-4">Languages</h3>
+              <div className="line-elegant w-16 mx-auto mb-4" />
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                Arabic, English, Danish and Kurdish.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-display text-5xl lg:text-6xl font-light text-foreground mb-8"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-center"
             >
-              The Art of
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="block italic text-primary"
-              >
-                Presence
-              </motion.span>
-            </motion.h2>
+              <h3 className="font-display text-2xl text-foreground mb-4">Sports</h3>
+              <div className="line-elegant w-16 mx-auto mb-4" />
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                I'm a tennis and padel coach, and I also enjoy playing football, swimming, and going to the gym to stay in great shape.
+              </p>
+            </motion.div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="space-y-6 text-muted-foreground font-body leading-relaxed"
+              className="text-center"
             >
-              <p>
-                I embody contemporary elegance with a magnetic presence 
-                that goes beyond the boundaries of traditional fashion. Based in 
-                Dubai, I have built a distinctive style showcased on some of the 
-                world's most prestigious runways.
-              </p>
-              <p>
-                With over a decade of experience in the fashion industry, I have 
-                collaborated with iconic fashion houses and global platforms—from 
-                Vogue editorials to international campaigns.
+              <h3 className="font-display text-2xl text-foreground mb-4">Music</h3>
+              <div className="line-elegant w-16 mx-auto mb-4" />
+              <p className="font-body text-sm text-muted-foreground leading-relaxed">
+                I play a bit of piano and ney (a Middle Eastern flute).
               </p>
             </motion.div>
-
-            {/* Stats with counter animation */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="grid grid-cols-4 gap-4 mt-12 pt-12 border-t border-border"
-            >
-              {stats.map((stat, index) => (
-                <StatCounter
-                  key={index}
-                  value={stat.value}
-                  label={stat.label}
-                  delay={0.6 + index * 0.1}
-                  isInView={isInView}
-                />
-              ))}
-            </motion.div>
+          </div>
         </div>
       </div>
     </section>
