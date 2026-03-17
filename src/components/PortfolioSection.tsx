@@ -54,6 +54,26 @@ const PortfolioSection = () => {
       title: "Détails",
       category: "Artisanat",
     },
+    {
+      image: lifestyle5,
+      title: "Vintage Style",
+      category: "Lifestyle",
+    },
+    {
+      image: lifestyle7,
+      title: "Urban Edge",
+      category: "Lifestyle",
+    },
+    {
+      image: epos3,
+      title: "Epos Headset",
+      category: "Advertisement",
+    },
+    {
+      image: lifestyle6,
+      title: "Golden Hour",
+      category: "Lifestyle",
+    },
   ];
 
   const lightboxImages = portfolioItems.map((item) => ({
