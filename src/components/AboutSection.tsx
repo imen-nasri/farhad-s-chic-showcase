@@ -39,33 +39,6 @@ const AboutSection = () => {
     <section ref={sectionRef} id="about" className="py-24 lg:py-32 bg-background">
       <div className="container mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Image with reveal animation */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative group"
-          >
-            <motion.div
-              initial={{ x: 16, y: 16 }}
-              whileInView={{ x: 8, y: 8 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="absolute -inset-4 border border-primary/20 -z-10"
-            />
-            <div className="overflow-hidden">
-              <motion.img
-                initial={{ scale: 1.2 }}
-                whileInView={{ scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                src={aboutImage}
-                alt="Farhad - Portrait"
-                className="w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-            </div>
-          </motion.div>
 
           {/* Content */}
           <div className="lg:pl-8">
