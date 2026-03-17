@@ -85,6 +85,14 @@ const Gallery = () => {
     { image: lifestyle4, title: "Street Style", category: "lifestyle" },
     // Professional
     { image: professional1, title: "Leadership", category: "professional" },
+    // Lifestyle - new
+    { image: lifestyle5, title: "Vintage Style", category: "lifestyle" },
+    { image: lifestyle6, title: "Golden Hour", category: "lifestyle" },
+    { image: lifestyle7, title: "Urban Edge", category: "lifestyle" },
+    // Advertisements
+    { image: epos1, title: "Epos Headset - Product", category: "advertisement" },
+    { image: epos2, title: "Epos Headset - Duo", category: "advertisement" },
+    { image: epos3, title: "Epos Headset - Office", category: "advertisement" },
   ];
 
   const filteredItems = selectedCategory === "all" 
