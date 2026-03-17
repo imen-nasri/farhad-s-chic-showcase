@@ -30,7 +30,15 @@ import lifestyle4 from "@/assets/gallery/lifestyle-4.jpg";
 // Gallery imports - Professional
 import professional1 from "@/assets/gallery/professional-1.jpg";
 
-type Category = "all" | "formal" | "lifestyle" | "portrait" | "professional";
+// New uploads
+import lifestyle5 from "@/assets/gallery/lifestyle-5.jpg";
+import lifestyle6 from "@/assets/gallery/lifestyle-6.jpg";
+import lifestyle7 from "@/assets/gallery/lifestyle-7.jpg";
+import epos1 from "@/assets/gallery/epos-1.jpg";
+import epos2 from "@/assets/gallery/epos-2.jpg";
+import epos3 from "@/assets/gallery/epos-3.jpg";
+
+type Category = "all" | "formal" | "lifestyle" | "portrait" | "professional" | "advertisement";
 
 interface GalleryItem {
   image: string;
