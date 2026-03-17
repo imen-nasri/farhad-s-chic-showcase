@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import aboutImage from "@/assets/about-farhad.jpg";
 import { useCounter } from "@/hooks/useScrollAnimation";
 
 const StatCounter = ({ value, label, delay, isInView }: { value: string; label: string; delay: number; isInView: boolean }) => {
