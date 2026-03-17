@@ -1,311 +1,177 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Phone, Mail, MapPin, Loader2, CheckCircle } from "lucide-react";
-import { z } from "zod";
-import { toast } from "sonner";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(2, "Le nom doit contenir au moins 2 caractères").max(100),
-  email: z.string().trim().email("Email invalide").max(255),
-  projectType: z.string().min(1, "Veuillez sélectionner un type de projet"),
-  message: z.string().trim().min(10, "Le message doit contenir au moins 10 caractères").max(1000),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
+import { Phone, Mail, MapPin } from "lucide-react";
 
 const ContactSection = () => {
-  const [formData, setFormData] = useState<ContactFormData>({
-    name: "",
-    email: "",
-    projectType: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { amount: 0.2, once: true });
 
-  const contactInfo = [
+  const contactItems = [
     {
       icon: Mail,
       label: "Email",
-      value: "info@farhad-model.com",
-      href: "mailto:info@farhad-model.com",
+      value: "farhadfarhadsaeed@gmail.com",
+      href: "mailto:farhadfarhadsaeed@gmail.com",
     },
     {
-      icon: Phone,
-      label: "WhatsApp",
-      value: "+45 71 45 56 77",
-      href: "https://wa.me/4571455677",
-    },
-    {
-      icon: MapPin,
-      label: "Location",
-      value: "Dubai, UAE",
-      href: "#",
+      icon: (props: any) => (
+        <svg viewBox="0 0 24 24" className={props.className} fill="currentColor">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 2.136.672 4.116 1.816 5.74L2.06 22l4.344-1.708A9.944 9.944 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm5.196 14.11c-.22.617-1.29 1.18-1.778 1.254-.488.076-1.11.108-1.79-.112-.412-.132-.94-.308-1.618-.604-2.842-1.242-4.698-4.12-4.838-4.312-.14-.192-1.144-1.524-1.144-2.908s.724-2.064.98-2.346c.258-.282.562-.352.748-.352.188 0 .374 0 .538.01.172.008.404-.066.632.482.232.558.788 1.926.858 2.066.07.14.116.302.024.49-.094.186-.14.302-.28.466-.14.164-.294.366-.42.49-.14.14-.286.29-.124.57.164.28.726 1.198 1.558 1.94 1.072.954 1.974 1.25 2.254 1.39.28.14.444.116.608-.07.164-.188.702-.82.89-1.102.188-.282.374-.234.632-.14.258.094 1.638.774 1.918.914.28.14.466.21.538.326.07.116.07.676-.15 1.294z"/>
+        </svg>
+      ),
+      label2: "Instagram",
+      value2: "@farhad.model93",
+      href2: "https://instagram.com/farhad.model93",
     },
   ];
 
-  const handleInputChange = (field: keyof ContactFormData, value: string) => {
-    setFormData((prev) => ({ ...prev, [field]: value }));
-    if (errors[field]) {
-      setErrors((prev) => ({ ...prev, [field]: undefined }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setErrors({});
-
-    const result = contactSchema.safeParse(formData);
-    if (!result.success) {
-      const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
-      result.error.errors.forEach((error) => {
-        const field = error.path[0] as keyof ContactFormData;
-        fieldErrors[field] = error.message;
-      });
-      setErrors(fieldErrors);
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    // Simulate API call - Replace with actual backend call
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      setIsSuccess(true);
-      toast.success("Message envoyé avec succès !");
-      setFormData({ name: "", email: "", projectType: "", message: "" });
-      setTimeout(() => setIsSuccess(false), 3000);
-    } catch {
-      toast.error("Erreur lors de l'envoi. Veuillez réessayer.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const inputVariants = {
-    focus: { borderColor: "hsl(var(--primary))" },
-    blur: { borderColor: "hsl(var(--border))" },
-  };
-
   return (
-    <section ref={sectionRef} id="contact" className="py-24 lg:py-32 bg-background relative overflow-hidden">
-      {/* Background Elements */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 1 }}
-        className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary/5 to-transparent pointer-events-none"
-      />
-
-      <div className="container mx-auto px-6 lg:px-12 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left Content */}
+    <section ref={sectionRef} id="contact" className="py-24 lg:py-32 bg-background">
+      <div className="container mx-auto px-6 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
+            Get in Touch
+          </p>
+          <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground">
+            Contact
+          </h2>
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
-              Let's Work Together
-            </p>
-            <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground mb-8">
-              Get in
-              <motion.span
-                initial={{ opacity: 0, x: -20 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="block italic text-primary"
-              >
-                Touch
-              </motion.span>
-            </h2>
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="line-elegant w-24 mx-auto mt-8 origin-center"
+          />
+        </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="font-body text-muted-foreground leading-relaxed max-w-md mb-12"
+        <div className="max-w-2xl mx-auto">
+          <div className="space-y-8">
+            {/* Email */}
+            <motion.a
+              href="mailto:farhadfarhadsaeed@gmail.com"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="flex items-center gap-6 group"
+              whileHover={{ x: 10 }}
             >
-              For collaboration inquiries, bookings, or any other information, 
-              feel free to contact me directly or through my agency.
-            </motion.p>
-
-            {/* Contact Info */}
-            <div className="space-y-8">
-              {contactInfo.map((item, index) => (
-                <motion.a
-                  key={index}
-                  href={item.href}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                  className="flex items-center gap-6 group"
-                  whileHover={{ x: 10 }}
-                >
-                  <motion.div
-                    whileHover={{ scale: 1.1, borderColor: "hsl(var(--primary))" }}
-                    className="w-12 h-12 border border-border flex items-center justify-center group-hover:bg-primary/10 transition-all duration-300"
-                  >
-                    <item.icon className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-                  </motion.div>
-                  <div>
-                    <p className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">
-                      {item.label}
-                    </p>
-                    <p className="font-body text-foreground group-hover:text-primary transition-colors">
-                      {item.value}
-                    </p>
-                  </div>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Right - Booking Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="bg-card p-8 lg:p-12 border border-border"
-          >
-            <h3 className="font-display text-2xl lg:text-3xl text-foreground mb-8">
-              Booking Request
-            </h3>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.3 }}
-                >
-                  <label className="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-3">
-                    Name
-                  </label>
-                  <motion.input
-                    type="text"
-                    value={formData.name}
-                    onChange={(e) => handleInputChange("name", e.target.value)}
-                    className={`w-full bg-transparent border-b py-3 font-body text-foreground focus:outline-none transition-colors ${
-                      errors.name ? "border-destructive" : "border-border focus:border-primary"
-                    }`}
-                    placeholder="Your name"
-                    variants={inputVariants}
-                    whileFocus="focus"
-                  />
-                  {errors.name && (
-                    <p className="text-destructive text-xs mt-2">{errors.name}</p>
-                  )}
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.4 }}
-                >
-                  <label className="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-3">
-                    Email
-                  </label>
-                  <motion.input
-                    type="email"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    className={`w-full bg-transparent border-b py-3 font-body text-foreground focus:outline-none transition-colors ${
-                      errors.email ? "border-destructive" : "border-border focus:border-primary"
-                    }`}
-                    placeholder="votre@email.com"
-                    variants={inputVariants}
-                    whileFocus="focus"
-                  />
-                  {errors.email && (
-                    <p className="text-destructive text-xs mt-2">{errors.email}</p>
-                  )}
-                </motion.div>
+              <div className="w-12 h-12 border border-border flex items-center justify-center group-hover:bg-primary/10 transition-all duration-300">
+                <Mail className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
               </div>
+              <div>
+                <p className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Email</p>
+                <p className="font-body text-foreground group-hover:text-primary transition-colors">farhadfarhadsaeed@gmail.com</p>
+              </div>
+            </motion.a>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.5 }}
-              >
-                <label className="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-3">
-                  Project Type
-                </label>
-                <select
-                  value={formData.projectType}
-                  onChange={(e) => handleInputChange("projectType", e.target.value)}
-                  className={`w-full bg-transparent border-b py-3 font-body text-foreground focus:outline-none transition-colors cursor-pointer ${
-                    errors.projectType ? "border-destructive" : "border-border focus:border-primary"
-                  }`}
-                >
-                  <option value="" className="bg-card">Select an option</option>
-                  <option value="editorial" className="bg-card">Editorial</option>
-                  <option value="campaign" className="bg-card">Advertising Campaign</option>
-                  <option value="runway" className="bg-card">Runway</option>
-                  <option value="other" className="bg-card">Other</option>
-                </select>
-                {errors.projectType && (
-                  <p className="text-destructive text-xs mt-2">{errors.projectType}</p>
-                )}
-              </motion.div>
+            {/* Instagram */}
+            <motion.a
+              href="https://instagram.com/farhad.model93"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="flex items-center gap-6 group"
+              whileHover={{ x: 10 }}
+            >
+              <div className="w-12 h-12 border border-border flex items-center justify-center group-hover:bg-primary/10 transition-all duration-300">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Instagram</p>
+                <p className="font-body text-foreground group-hover:text-primary transition-colors">@farhad.model93</p>
+              </div>
+            </motion.a>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.6 }}
-              >
-                <label className="font-body text-xs tracking-widest uppercase text-muted-foreground block mb-3">
-                  Message
-                </label>
-                <motion.textarea
-                  rows={4}
-                  value={formData.message}
-                  onChange={(e) => handleInputChange("message", e.target.value)}
-                  className={`w-full bg-transparent border-b py-3 font-body text-foreground focus:outline-none transition-colors resize-none ${
-                    errors.message ? "border-destructive" : "border-border focus:border-primary"
-                  }`}
-                    placeholder="Describe your project..."
-                    variants={inputVariants}
-                  whileFocus="focus"
-                />
-                {errors.message && (
-                  <p className="text-destructive text-xs mt-2">{errors.message}</p>
-                )}
-              </motion.div>
+            {/* Facebook */}
+            <motion.a
+              href="https://facebook.com/farhad.saeed"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex items-center gap-6 group"
+              whileHover={{ x: 10 }}
+            >
+              <div className="w-12 h-12 border border-border flex items-center justify-center group-hover:bg-primary/10 transition-all duration-300">
+                <svg viewBox="0 0 24 24" className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" fill="currentColor">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </div>
+              <div>
+                <p className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Facebook</p>
+                <p className="font-body text-foreground group-hover:text-primary transition-colors">Farhad Saeed</p>
+              </div>
+            </motion.a>
 
-              <motion.button
-                type="submit"
-                disabled={isSubmitting || isSuccess}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.7 }}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`w-full mt-8 py-4 font-body text-sm tracking-widest uppercase transition-all duration-300 flex items-center justify-center gap-3 ${
-                  isSuccess
-                    ? "bg-green-600 text-white"
-                    : "bg-primary text-primary-foreground hover:bg-primary/90"
-                } disabled:opacity-70`}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
-                  </>
-                ) : isSuccess ? (
-                  <>
-                    <CheckCircle className="w-4 h-4" />
-                    Message Sent
-                  </>
-                ) : (
-                  "Send Request"
-                )}
-              </motion.button>
-            </form>
-          </motion.div>
+            {/* Denmark Phone */}
+            <motion.a
+              href="https://wa.me/4571455677"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="flex items-center gap-6 group"
+              whileHover={{ x: 10 }}
+            >
+              <div className="w-12 h-12 border border-border flex items-center justify-center group-hover:bg-primary/10 transition-all duration-300">
+                <Phone className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </div>
+              <div>
+                <p className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Denmark / WhatsApp</p>
+                <p className="font-body text-foreground group-hover:text-primary transition-colors">+45 71 45 56 77</p>
+              </div>
+            </motion.a>
+
+            {/* UAE Phone */}
+            <motion.a
+              href="https://wa.me/971569446090"
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="flex items-center gap-6 group"
+              whileHover={{ x: 10 }}
+            >
+              <div className="w-12 h-12 border border-border flex items-center justify-center group-hover:bg-primary/10 transition-all duration-300">
+                <Phone className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </div>
+              <div>
+                <p className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">UAE / WhatsApp</p>
+                <p className="font-body text-foreground group-hover:text-primary transition-colors">+971 56 944 6090</p>
+              </div>
+            </motion.a>
+
+            {/* Location */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex items-center gap-6"
+            >
+              <div className="w-12 h-12 border border-border flex items-center justify-center">
+                <MapPin className="w-5 h-5 text-muted-foreground" />
+              </div>
+              <div>
+                <p className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-1">Location</p>
+                <p className="font-body text-foreground">Dubai Marina, UAE</p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>
