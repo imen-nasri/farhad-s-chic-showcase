@@ -61,6 +61,7 @@ const Gallery = () => {
     { value: "lifestyle", label: "Lifestyle" },
     { value: "portrait", label: "Portrait" },
     { value: "professional", label: "Professionnel" },
+    { value: "advertisement", label: "Publicités" },
   ];
 
   const galleryItems: GalleryItem[] = [
