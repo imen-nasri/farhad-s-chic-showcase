@@ -7,6 +7,12 @@ import portfolio4 from "@/assets/portfolio-4.jpg";
 import portfolio5 from "@/assets/portfolio-5.jpg";
 import portfolio6 from "@/assets/portfolio-6.jpg";
 import portfolio7 from "@/assets/portfolio-7.jpg";
+import lifestyle5 from "@/assets/gallery/lifestyle-5.jpg";
+import lifestyle6 from "@/assets/gallery/lifestyle-6.jpg";
+import lifestyle7 from "@/assets/gallery/lifestyle-7.jpg";
+import epos1 from "@/assets/gallery/epos-1.jpg";
+import epos2 from "@/assets/gallery/epos-2.jpg";
+import epos3 from "@/assets/gallery/epos-3.jpg";
 import Lightbox from "./Lightbox";
 
 const PortfolioSection = () => {
