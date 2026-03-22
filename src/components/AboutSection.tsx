@@ -6,8 +6,8 @@ const AboutSection = () => {
   const isInView = useInView(sectionRef, { amount: 0.05, once: true });
 
   return (
-    <section ref={sectionRef} id="about" className="py-24 lg:py-32 bg-background">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section ref={sectionRef} id="about" className="py-12 md:py-24 lg:py-32 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
