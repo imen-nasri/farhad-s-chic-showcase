@@ -49,7 +49,7 @@ const HeroSection = () => {
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 1, delay: 1 }}
-              className="line-elegant w-40 mt-8 origin-left"
+              className="line-elegant w-28 md:w-40 mt-4 md:mt-8 origin-left"
             />
             <motion.p
               initial={{ opacity: 0 }}
