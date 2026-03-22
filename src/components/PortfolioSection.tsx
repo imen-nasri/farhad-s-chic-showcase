@@ -43,7 +43,7 @@ const filters: { value: FilterCategory; label: string }[] = [
   { value: "advertisement", label: "Ads" },
 ];
 
-// Mobile swipeable carousel
+// Mobile swipeable carousel — cute modern version
 const MobileCarousel = ({
   items,
   onOpenLightbox,
@@ -52,122 +52,152 @@ const MobileCarousel = ({
   onOpenLightbox: (index: number) => void;
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [direction, setDirection] = useState(0);
 
   const goTo = useCallback(
     (index: number) => {
       const clamped = Math.max(0, Math.min(index, items.length - 1));
+      setDirection(clamped > currentIndex ? 1 : -1);
       setCurrentIndex(clamped);
     },
-    [items.length]
+    [items.length, currentIndex]
   );
 
   useEffect(() => {
     setCurrentIndex(0);
   }, [items]);
 
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset: number, velocity: number) =>
+    Math.abs(offset) * velocity;
+
+  const paginate = (newDirection: number) => {
+    const next = currentIndex + newDirection;
+    if (next >= 0 && next < items.length) {
+      setDirection(newDirection);
+      setCurrentIndex(next);
+    }
+  };
+
+  const variants = {
+    enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0, scale: 0.9 }),
+    center: { x: 0, opacity: 1, scale: 1 },
+    exit: (dir: number) => ({ x: dir < 0 ? 300 : -300, opacity: 0, scale: 0.9 }),
+  };
+
   return (
-    <div className="relative">
-      {/* Main image */}
-      <div
-        ref={containerRef}
-        className="relative aspect-[3/4] overflow-hidden cursor-pointer"
-        onClick={() => onOpenLightbox(currentIndex)}
-      >
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={items[currentIndex]?.image}
-            src={items[currentIndex]?.image}
-            alt={items[currentIndex]?.title}
-            className="absolute inset-0 w-full h-full object-cover"
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-          />
-        </AnimatePresence>
+    <div className="space-y-4">
+      {/* Main image card */}
+      <div className="relative rounded-2xl overflow-hidden shadow-lg border border-border/50 bg-card">
+        <div
+          className="relative aspect-[3/4] overflow-hidden cursor-pointer"
+          onClick={() => onOpenLightbox(currentIndex)}
+        >
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.img
+              key={items[currentIndex]?.image}
+              src={items[currentIndex]?.image}
+              alt={items[currentIndex]?.title}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="absolute inset-0 w-full h-full object-cover"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={1}
+              onDragEnd={(_, { offset, velocity }) => {
+                const swipe = swipePower(offset.x, velocity.x);
+                if (swipe < -swipeConfidenceThreshold) paginate(1);
+                else if (swipe > swipeConfidenceThreshold) paginate(-1);
+              }}
+            />
+          </AnimatePresence>
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
+          {/* Soft gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-background/10 pointer-events-none" />
 
-        {/* Title overlay */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentIndex}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.3 }}
-            className="absolute bottom-0 left-0 right-0 p-6"
-          >
-            <p className="font-body text-[10px] tracking-widest uppercase text-primary mb-1">
-              {items[currentIndex]?.category}
-            </p>
-            <h3 className="font-display text-2xl text-foreground">
-              {items[currentIndex]?.title}
-            </h3>
-          </motion.div>
-        </AnimatePresence>
+          {/* Title overlay */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
+              className="absolute bottom-0 left-0 right-0 p-5 pointer-events-none"
+            >
+              <p className="font-body text-[10px] tracking-[0.2em] uppercase text-primary/90 mb-1.5">
+                {items[currentIndex]?.category}
+              </p>
+              <h3 className="font-display text-xl text-foreground">
+                {items[currentIndex]?.title}
+              </h3>
+            </motion.div>
+          </AnimatePresence>
 
-        {/* Nav arrows */}
-        {currentIndex > 0 && (
-          <button
-            onClick={(e) => { e.stopPropagation(); goTo(currentIndex - 1); }}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-background/60 backdrop-blur-sm border border-border flex items-center justify-center"
-          >
-            <ChevronLeft className="w-5 h-5 text-foreground" />
-          </button>
-        )}
-        {currentIndex < items.length - 1 && (
-          <button
-            onClick={(e) => { e.stopPropagation(); goTo(currentIndex + 1); }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 bg-background/60 backdrop-blur-sm border border-border flex items-center justify-center"
-          >
-            <ChevronRight className="w-5 h-5 text-foreground" />
-          </button>
-        )}
+          {/* Cute pill counter */}
+          <div className="absolute top-3 right-3 bg-background/70 backdrop-blur-md rounded-full px-3 py-1 shadow-sm">
+            <span className="font-body text-[11px] text-foreground/80 font-medium">
+              {currentIndex + 1} / {items.length}
+            </span>
+          </div>
 
-        {/* Counter */}
-        <div className="absolute top-4 right-4 bg-background/60 backdrop-blur-sm px-3 py-1.5 border border-border">
-          <span className="font-body text-xs text-foreground">
-            {currentIndex + 1} / {items.length}
-          </span>
+          {/* Soft round nav arrows */}
+          {currentIndex > 0 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); paginate(-1); }}
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-background/70 backdrop-blur-md shadow-sm flex items-center justify-center active:scale-90 transition-transform"
+            >
+              <ChevronLeft className="w-4 h-4 text-foreground/80" />
+            </button>
+          )}
+          {currentIndex < items.length - 1 && (
+            <button
+              onClick={(e) => { e.stopPropagation(); paginate(1); }}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-background/70 backdrop-blur-md shadow-sm flex items-center justify-center active:scale-90 transition-transform"
+            >
+              <ChevronRight className="w-4 h-4 text-foreground/80" />
+            </button>
+          )}
         </div>
       </div>
 
-      {/* Thumbnail strip */}
-      <div className="mt-3 flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+      {/* Thumbnail strip — rounded & cute */}
+      <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide px-1">
         {items.map((item, index) => (
-          <button
+          <motion.button
             key={item.image}
             onClick={() => goTo(index)}
-            className={`flex-shrink-0 w-16 h-20 overflow-hidden border-2 transition-all duration-300 ${
+            whileTap={{ scale: 0.92 }}
+            className={`flex-shrink-0 w-14 h-[70px] rounded-xl overflow-hidden transition-all duration-300 ${
               index === currentIndex
-                ? "border-primary opacity-100"
-                : "border-transparent opacity-50"
+                ? "ring-2 ring-primary ring-offset-2 ring-offset-card opacity-100 shadow-md"
+                : "opacity-40 hover:opacity-70"
             }`}
           >
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-full object-cover"
-            />
-          </button>
+            <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+          </motion.button>
         ))}
       </div>
 
-      {/* Dot indicators */}
-      <div className="flex justify-center gap-1.5 mt-3">
+      {/* Dot indicators — cute pills */}
+      <div className="flex justify-center gap-1.5">
         {items.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goTo(index)}
-            className={`h-1 rounded-full transition-all duration-300 ${
-              index === currentIndex
-                ? "w-6 bg-primary"
-                : "w-1.5 bg-muted-foreground/30"
-            }`}
-          />
+          <button key={index} onClick={() => goTo(index)}>
+            <motion.div
+              animate={{
+                width: index === currentIndex ? 20 : 6,
+                backgroundColor: index === currentIndex
+                  ? "hsl(var(--primary))"
+                  : "hsl(var(--muted-foreground) / 0.25)",
+              }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="h-1.5 rounded-full"
+            />
+          </button>
         ))}
       </div>
     </div>
@@ -233,17 +263,18 @@ const PortfolioSection = () => {
             className="flex justify-center gap-2 md:gap-3 mb-8 md:mb-12"
           >
             {filters.map((filter) => (
-              <button
+              <motion.button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`font-body text-[11px] md:text-xs tracking-widest uppercase px-4 md:px-6 py-2.5 md:py-3 border transition-all duration-300 ${
+                whileTap={{ scale: 0.95 }}
+                className={`font-body text-[11px] md:text-xs tracking-widest uppercase px-4 md:px-6 py-2.5 md:py-3 rounded-full md:rounded-none transition-all duration-300 ${
                   activeFilter === filter.value
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-transparent text-muted-foreground border-border hover:border-primary hover:text-primary"
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "bg-muted/50 md:bg-transparent text-muted-foreground md:border md:border-border hover:bg-primary/10 hover:text-primary"
                 }`}
               >
                 {filter.label}
-              </button>
+              </motion.button>
             ))}
           </motion.div>
 
