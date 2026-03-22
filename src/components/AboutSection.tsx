@@ -31,7 +31,7 @@ const AboutSection = () => {
           />
         </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-16">
+        <div className="max-w-3xl mx-auto space-y-8 md:space-y-16">
           {/* Main About */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -55,7 +55,7 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
-              className="font-body text-sm text-muted-foreground tracking-widest uppercase mt-6"
+              className="font-body text-xs md:text-sm text-muted-foreground tracking-widest uppercase mt-3 md:mt-6"
             >
               Dubai · Copenhagen · International
             </motion.p>
