@@ -13,8 +13,8 @@ const actingVideos = [
 
 const ActingSection = () => {
   return (
-    <section id="acting" className="py-24 lg:py-32 bg-background">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section id="acting" className="py-12 md:py-24 lg:py-32 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
