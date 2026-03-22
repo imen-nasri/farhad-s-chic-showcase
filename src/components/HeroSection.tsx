@@ -26,15 +26,7 @@ const HeroSection = () => {
                 transition={{ duration: 1, delay: 0.3 }}
                 className="block"
               >
-                FAR
-              </motion.span>
-              <motion.span
-                initial={{ opacity: 0, y: 80 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1, delay: 0.5 }}
-                className="block"
-              >
-                HAD
+                FARHAD
               </motion.span>
               <motion.span
                 initial={{ opacity: 0, y: 80 }}
