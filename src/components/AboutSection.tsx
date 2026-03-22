@@ -27,7 +27,7 @@ const AboutSection = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="line-elegant w-24 mx-auto mt-8 origin-center"
+            className="line-elegant w-24 mx-auto mt-4 md:mt-8 origin-center"
           />
         </motion.div>
 
