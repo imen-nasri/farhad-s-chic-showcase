@@ -25,7 +25,7 @@ const ActingSection = () => {
           <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
             Showreel
           </p>
-          <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-light text-foreground">
             Acting
           </h2>
           <motion.div
