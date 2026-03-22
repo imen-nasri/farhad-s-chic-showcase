@@ -229,7 +229,7 @@ const PortfolioSection = () => {
 
   return (
     <>
-      <section ref={sectionRef} id="portfolio" className="py-16 md:py-24 lg:py-32 bg-card">
+      <section ref={sectionRef} id="portfolio" className="py-10 md:py-24 lg:py-32 bg-card">
         <div className="container mx-auto px-4 md:px-6 lg:px-12">
           {/* Header */}
           <motion.div
@@ -237,7 +237,7 @@ const PortfolioSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-center mb-8 md:mb-16 lg:mb-24"
+            className="text-center mb-5 md:mb-16 lg:mb-24"
           >
             <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
               Works

@@ -6,20 +6,20 @@ const AboutSection = () => {
   const isInView = useInView(sectionRef, { amount: 0.05, once: true });
 
   return (
-    <section ref={sectionRef} id="about" className="py-24 lg:py-32 bg-background">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section ref={sectionRef} id="about" className="py-12 md:py-24 lg:py-32 bg-background">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
             About
           </p>
-          <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-light text-foreground">
             About Me
           </h2>
           <motion.div
@@ -27,11 +27,11 @@ const AboutSection = () => {
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="line-elegant w-24 mx-auto mt-8 origin-center"
+            className="line-elegant w-24 mx-auto mt-4 md:mt-8 origin-center"
           />
         </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-16">
+        <div className="max-w-3xl mx-auto space-y-8 md:space-y-16">
           {/* Main About */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

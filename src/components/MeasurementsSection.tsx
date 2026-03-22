@@ -12,19 +12,19 @@ const measurements = [
 
 const MeasurementsSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-card">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section className="py-12 md:py-20 lg:py-28 bg-card">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
           <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
             Stats
           </p>
-          <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-light text-foreground">
             Measurements
           </h2>
           <motion.div

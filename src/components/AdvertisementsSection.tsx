@@ -13,19 +13,19 @@ const adVideos = [
 
 const AdvertisementsSection = () => {
   return (
-    <section id="advertisements" className="py-24 lg:py-32 bg-card">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section id="advertisements" className="py-12 md:py-24 lg:py-32 bg-card">
+      <div className="container mx-auto px-4 md:px-6 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
             Campaigns
           </p>
-          <h2 className="font-display text-5xl lg:text-7xl font-light text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl lg:text-7xl font-light text-foreground">
             Advertisements
           </h2>
           <motion.div
