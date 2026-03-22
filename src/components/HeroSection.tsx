@@ -40,7 +40,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, y: 80 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.7 }}
-                className="block italic text-primary text-[4rem] md:text-[5rem] lg:text-[6rem] xl:text-[7rem] mt-2"
+                className="block italic text-primary text-[3rem] md:text-[5rem] lg:text-[6rem] xl:text-[7rem] mt-1 md:mt-2"
               >
                 Saeed
               </motion.span>
