@@ -263,17 +263,18 @@ const PortfolioSection = () => {
             className="flex justify-center gap-2 md:gap-3 mb-8 md:mb-12"
           >
             {filters.map((filter) => (
-              <button
+              <motion.button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`font-body text-[11px] md:text-xs tracking-widest uppercase px-4 md:px-6 py-2.5 md:py-3 border transition-all duration-300 ${
+                whileTap={{ scale: 0.95 }}
+                className={`font-body text-[11px] md:text-xs tracking-widest uppercase px-4 md:px-6 py-2.5 md:py-3 rounded-full md:rounded-none transition-all duration-300 ${
                   activeFilter === filter.value
-                    ? "bg-primary text-primary-foreground border-primary"
-                    : "bg-transparent text-muted-foreground border-border hover:border-primary hover:text-primary"
+                    ? "bg-primary text-primary-foreground shadow-md"
+                    : "bg-muted/50 md:bg-transparent text-muted-foreground md:border md:border-border hover:bg-primary/10 hover:text-primary"
                 }`}
               >
                 {filter.label}
-              </button>
+              </motion.button>
             ))}
           </motion.div>
 
