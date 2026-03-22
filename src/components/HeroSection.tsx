@@ -19,7 +19,7 @@ const HeroSection = () => {
             >
               Model & Actor
             </motion.p>
-            <h1 className="font-display text-[5rem] md:text-[8rem] lg:text-[10rem] xl:text-[12rem] font-light leading-[0.85] tracking-wide text-foreground">
+            <h1 className="font-display text-[4.5rem] md:text-[6rem] lg:text-[8rem] xl:text-[10rem] font-light leading-[0.85] tracking-wide text-foreground">
               <motion.span
                 initial={{ opacity: 0, y: 80 }}
                 animate={{ opacity: 1, y: 0 }}
