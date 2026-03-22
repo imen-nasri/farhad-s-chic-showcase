@@ -15,7 +15,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-6"
+              className="font-body text-xs md:text-sm tracking-[0.3em] uppercase text-primary mb-3 md:mb-6"
             >
               Model & Actor
             </motion.p>
