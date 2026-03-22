@@ -20,7 +20,7 @@ const AdvertisementsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-16"
         >
           <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">
             Campaigns
